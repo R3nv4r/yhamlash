@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Próxima Cita - Salón de Belleza</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Menú superior para usuarios logueados -->
+    <nav class="menu" id="userMenu" style="display: none;">
+        <div class="logo">
+            
+        </div>
+        <div class="menu-items">
+            <a href="/pages/schedule.html" class="menu-btn">Agendar cita</a>
+            
+            <a href="/pages/next-appointment.html" class="menu-btn">Visitas anteriores</a>
+            <div class="menu-btn submenu-container">
+                <span class="submenu-toggle notification-toggle">
+                    <span class="bell-icon">🔔</span> <!-- Ícono de campana -->
+                    <span class="notification-dot" id="notificationDot" style="display: none;"></span> <!-- Punto rojo -->
+                    
+                </span>
+                <div class="submenu notification-submenu" id="notificationSubmenu">
+                    <div class="notification-item" id="notificationMessage">
+                        <!-- Mensajes de notificación se insertarán aquí -->
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </nav>
+    <div class="container">
+        <h1 style="color: #6a126b;">Próxima Cita</h1>
+        
+        <!-- Lista de citas futuras -->
+        <section class="appointment-list">
+            <h2>Citas Futuras</h2>
+            <ul id="appointmentList"></ul>
+        </section>
+
+        <!-- Enlace para volver al inicio -->
+        <section class="back-to-home">
+            <a href="/index.html" class="btn" style="color: #6a126b;">Volver al inicio</a>
+        </section>
+    </div>
+    <script src="/script/script.js"></script>
+    <script src="/script/schedule.js"></script>
+</body>
+</html>

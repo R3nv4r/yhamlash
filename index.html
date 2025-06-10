@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAM-LASHES - Bienvenidos</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap" rel="stylesheet">
+</head>
+<body>
+        <!-- Menú superior para usuarios logueados -->
+    <nav class="menu" id="userMenu" style="display: none;">
+        <div class="logo">
+            
+        </div>
+        <div class="menu-items">
+            
+            <a href="/pages/next-appointment.html" class="menu-btn">Próxima cita</a>
+            <a href="/pages/next-appointment.html" class="menu-btn">Visitas anteriores</a>
+            <div class="menu-btn submenu-container">
+                <span class="submenu-toggle notification-toggle">
+                    <span class="bell-icon">🔔</span> <!-- Ícono de campana -->
+                    <span class="notification-dot" id="notificationDot" style="display: none;"></span> <!-- Punto rojo -->
+                    
+                </span>
+                <div class="submenu notification-submenu" id="notificationSubmenu">
+                    <div class="notification-item" id="notificationMessage">
+                        <!-- Mensajes de notificación se insertarán aquí -->
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </nav>
+    <!-- Universal Menu (Visible to all users) -->
+    <nav class="universal-menu">
+        <div class="logo-titulo-container" style="display: flex; align-items: center;">
+            <div class="logo">
+                <img src="/assets/Logo.png" alt="YAM-LASHES Logo" class="logo-img">
+            </div>
+            <!-- Título -->
+            <section class="titulo" style="margin-left: 16px;">
+                <div style="font-family: 'Bukhari Script';">
+                    <h1>YAM-LASH</h1>
+                </div>
+                <h3 style="color: white;">Lash time</h3>
+            </section>
+        </div>
+
+        </section>
+        <div class="menu-items">
+            <a href="/index.html" class="menu-btn">Inicio</a>
+            <a href="#about" class="menu-btn">Sobre Nosotros</a>
+            <a href="#services" class="menu-btn">Servicios</a>
+            <a href="#gallery" class="menu-btn">Galería</a>
+            <a href="#contact" class="menu-btn">Contacto</a>
+            <a href="/pages/schedule.html" class="menu-btn" id="bookBtn">Agendar Cita</a>
+            <div class="menu-btn submenu-container" id="authMenu">
+                <span class="submenu-toggle" id="authToggle" aria-haspopup="true" aria-expanded="false">Iniciar Sesión</span>
+                <div class="submenu auth-submenu" id="authSubmenu"></div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container">
+
+
+        <!-- Lema -->
+        <section class="lema">
+            <div class="lema-content">
+                <p>Tu mirada, tu tiempo, tu espacio.</p>
+            </div>
+        </section>
+
+        <h2>¿Por qué elegirnos?</h2>
+
+        <!-- Ofrecemos -->
+        <section class="ofrecemos">
+            <div class="foto">
+                <img src="/assets/source2.png" alt="Foto representativa">
+            </div>
+            <div class="texto">
+                <h2>Servicio a tu medida</h2>
+                <p>
+                    En nuestro salón, no solo ofrecemos servicios de belleza, sino una experiencia hecha a tu medida. 
+                    Escuchamos tus necesidades, te asesoramos según tu estilo y necesidades, y usamos técnicas 
+                    que realzan tu belleza natural. Queremos que te sientas única y especial en cada visita.
+                </p>
+            </div>
+        </section>
+
+        <!-- Ofrecemos Invertida -->
+        <section class="ofrecemos invertida">
+            <div class="texto">
+                <h2>Equipo preparado</h2>
+                <p>
+                    Nuestro equipo está capacitado con las últimas tendencias y técnicas en belleza, utilizando productos 
+                    de alta calidad, seguros y sostenibles.
+                </p>
+            </div>
+            <div class="foto">
+                <img src="/assets/source4.jpg" alt="Foto representativa">
+            </div>
+        </section>
+
+<!-- Servicios Section -->
+        <section id="services" class="services-page">
+            <h2>SERVICIOS QUE OFRECEMOS</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <div class="service-photo"> 
+                        <img src="/assets/clasicas.jpeg" alt="clasicas">
+                    </div>
+                    <div class="service-details">
+                        <h3>Técnica clásica:</h3>
+                        <p>Descripción: Se aplica una extensión sobre cada pestaña natural, alargando y definiendo la mirada sin exagerar.</p>
+                        <p class="price">Precio: $400.00</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-photo">
+                        <img src="/assets/rimel.jpeg" alt="rimel">
+                    </div>
+                    <div class="service-details">
+                        <h3>Efecto Rímel:</h3>
+                        <p>Descripción: Logra un acabado más marcado, como si llevaras máscara de pestañas todo el día. Perfecto para quienes desean un toque de intensidad sin volumen excesivo.</p>
+                        <p class="price">Precio: $400.00</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-photo"><img src="/assets/volumen.jpeg" alt="Hawaiano"></div>
+                    <div class="service-details">
+                        <h3>Volumen Y (Hawaiano):</h3>
+                        <p>Descripción: Extensiones en forma de "Y" que dan un volumen ligero y natural. Una opción fresca, juvenil y con un toque especial.</p>
+                        <p class="price">Precio: $350.00</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-photo"><img src="/assets/mvolu.jpeg" alt="Mega volumen"></div>
+                    <div class="service-details">
+                        <h3>Híbridas:</h3>
+                        <p>Descripción: Combinación de técnica clásica y volumen para un efecto equilibrado entre natural y glamuroso. ¡Tu mirada destacará sin perder naturalidad!</p>
+                        <p class="price">Precio: $350.00</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Únete -->
+        <section class="unete">
+            <a href="/pages/register.html" class="btn">Únete</a>
+            <p>¿Ya tienes una cuenta? <a href="/pages/login.html">Inicia sesión</a></p>
+        </section>
+
+        <!-- Galería (Carrusel) -->
+        <section id="gallery" class="carrusel">
+            <h2>Galería de Fotos</h2>
+            <div class="carrusel-container">
+                <button class="prev" onclick="moveSlide(-1)">❮</button>
+                <div class="carrusel-slides">
+                    <img src="/assets/source7.jpeg" alt="Foto 1" class="active">
+                    <img src="/assets/source8.jpeg" alt="Foto 2">
+                    <img src="/assets/source6.jpg" alt="Foto 4">
+                    <img src="/assets/img 4.jpeg" alt="Foto 3">
+                    <img src="/assets/source5.jpg" alt="Foto 1">
+                </div>
+                <button class="next" onclick="moveSlide(1)">❯</button>
+            </div>
+        </section>
+
+        <!-- Quiénes Somos (About Us) -->
+        <section id="about" class="quienes-somos">
+            <h2>¿Quiénes Somos?</h2>
+            <p>
+                Somos un equipo apasionado por innovar en el ámbito de la belleza, 
+                creando un salón exclusivo dedicado al arte de las pestañas. Nos 
+                comprometemos a realzar la belleza única de cada persona, ofreciendo 
+                servicios especializados que combinan técnicas de vanguardia, 
+                productos de la más alta calidad y un equipo de expertos altamente 
+                capacitados.
+            </p>
+        </section>
+
+        <!-- Contacto Section (New) -->
+        <section id="contact" class="contacto">
+            <h2>Contáctanos</h2>
+            <p>Ponte en contacto con nosotros para cualquier consulta o duda.</p>
+            <div class="contact-info">
+                <p><strong>Teléfono:</strong> +52 1 914 133 9516</p>
+                <p><strong>Email:</strong> info@yamlashes.com</p>
+                <p><strong>Dirección:</strong> Av. Belleza 123, Ciudad, País</p>
+                <p><strong>Redes Sociales:</strong> 
+                    <a href="https://instagram.com/yamlashes" target="_blank">Instagram</a> | 
+                    <a href="https://wa.me/19141339516" target="_blank">WhatsApp</a>
+                </p>
+            </div>
+        </section>
+    </div>
+    <script src="/script/script.js"></script>
+</body>
+</html>

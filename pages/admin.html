@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador - Salón de Belleza</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+    <nav class="menu" id="userMenu" style="display: none;">
+        <div class="logo">
+            
+        </div>
+        <div class="menu-items">
+            
+                
+           
+            <div class="menu-btn submenu-container">
+                <span class="submenu-toggle">Usuario</span>
+                <div class="submenu">
+                    <a href="/pages/edit-profile.html" class="menu-btn submenu-item">Editar usuario</a>
+                    <a href="#" class="submenu-item" id="logoutBtn">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Panel de Administrador</h1>
+        
+        <!-- Autenticación simple -->
+        <div id="adminAuth" style="display: block; padding: 20px; background: #F3EBEF; border-radius: 8px; margin-bottom: 20px;">
+            <label for="adminPassword">Contraseña de administrador:</label>
+            <input type="password" id="adminPassword" placeholder="Ingresa la contraseña">
+            <button id="adminLoginBtn" class="btn">Iniciar como Admin</button>
+        </div>
+
+        <!-- Tabla de citas y formulario para añadir admins -->
+        <section class="admin-table" style="display: none;">
+            <h2>Lista de Todas las Citas</h2>
+            <button id="downloadPdfBtn" class="btn" style="margin-bottom: 20px;">Descargar como PDF</button>
+            <table id="appointmentsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Servicio</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <!-- Formulario para añadir nuevos admins -->
+            <h2>Gestión de Administradores</h2>
+            <div class="form-group">
+                <label for="newAdminUsername">Nombre de usuario:</label>
+                <input type="text" id="newAdminUsername" required>
+            </div>
+            <div class="form-group">
+                <label for="newAdminPassword">Contraseña:</label>
+                <input type="password" id="newAdminPassword" required>
+            </div>
+            <button id="addAdminBtn" class="btn">Añadir Administrador</button>
+        </section>
+    </div>
+
+    <script src="/script/script.js"></script>
+    <script src="/script/admin.js"></script>
+</body>
+</html>

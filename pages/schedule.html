@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Citas - Salón de Belleza</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Menú superior para usuarios logueados -->
+    <nav class="menu" id="userMenu" style="display: none;">
+        <div class="logo">
+            
+        </div>
+        <div class="menu-items">
+            
+            <a href="/pages/next-appointment.html" class="menu-btn">Próxima cita</a>
+            <a href="/pages/next-appointment.html" class="menu-btn">Visitas anteriores</a>
+            <div class="menu-btn submenu-container">
+                <span class="submenu-toggle notification-toggle">
+                    <span class="bell-icon">🔔</span> <!-- Ícono de campana -->
+                    <span class="notification-dot" id="notificationDot" style="display: none;"></span> <!-- Punto rojo -->
+                    
+                </span>
+                <div class="submenu notification-submenu" id="notificationSubmenu">
+                    <div class="notification-item" id="notificationMessage">
+                        <!-- Mensajes de notificación se insertarán aquí -->
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 style="color: #6a126b;">Sistema de Citas</h1>
+        
+                <!-- Formulario para agendar cita -->
+        <section class="appointment-form">
+            <h2>Agendar una cita</h2>
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">Servicio requerido:</label>
+                    <select id="service" name="service" required>
+                        <option value="" disabled selected>Selecciona un servicio</option>
+                        <option value="tecnica-clasica">Técnica clásica - $400.00</option>
+                        <option value="efecto-rimel">Efecto Rímel - $400.00</option>
+                        <option value="volumen-y">Volumen Y (Hawaiano) - $350.00</option>
+                        <option value="hibridas">Híbridas - $350.00</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Fecha:</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Hora:</label>
+                <input type="time" id="time" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Necesidades especiales:</label>
+                    <textarea id="description"></textarea>
+                </div>
+                <button type="submit" class="btn">Agendar Cita</button>
+            </form>
+        </section>
+
+        
+
+        <!-- Enlace para volver al inicio -->
+        <section class="back-to-home">
+            <a href="/index.html" class="btn">Volver al inicio</a>
+        </section>
+    </div>
+    <script src="/script/script.js"></script>
+    <script src="/script/schedule.js"></script>
+</body>
+</html>
