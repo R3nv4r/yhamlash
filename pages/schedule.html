@@ -70,6 +70,18 @@
                     <label for="description">Necesidades especiales:</label>
                     <textarea id="description"></textarea>
                 </div>
+                <div class="form-group">
+    <label for="discountCode">Código de descuento (opcional):</label>
+    <input type="text" id="discountCode" name="discountCode">
+    <span id="discountError" style="color: red; display: none; font-size: 0.9rem;"></span>
+</div>
+<div class="form-group">
+    <div id="priceInfo" style="display: none;">
+        <p>Precio base: $<span id="basePrice">0</span></p>
+        <p id="discountInfo" style="display: none;">Descuento aplicado: $<span id="discountAmount">0</span> (<span id="discountPercentage">0</span>%)</p>
+        <p>Precio final: $<span id="finalPrice">0</span></p>
+    </div>
+</div>
                 <button type="submit" class="btn">Agendar Cita</button>
             </form>
         </section>

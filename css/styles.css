@@ -36,6 +36,26 @@ body {
 .universal-menu.hidden {
     transform: translateY(-100%); /* Slide menu up to hide */
 }
+#discountError {
+    margin-top: 5px;
+    display: block;
+}
+.price-info {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #DFCCEA; /* Lila claro */
+    border-radius: 4px;
+    color: #AA428B; /* Púrpura */
+}
+
+.price-info p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+.price-info strong {
+    color: #AA428B; /* Púrpura */
+}
 .auth-submenu {
     display: none;
     position: absolute;

@@ -1,3 +1,17 @@
+// Lista de códigos de descuento válidos
+const validDiscountCodes = {
+    'DESCUENTO10': { discount: 10, expires: '2025-12-31' },
+    'PROMO2025': { discount: 15, expires: '2025-07-31' }
+};
+
+// Precios de los servicios
+const servicePrices = {
+    'tecnica-clasica': 400,
+    'efecto-rimel': 400,
+    'volumen-y': 350,
+    'hibridas': 350
+};
+
 // Cargar citas desde localStorage al iniciar
 document.addEventListener('DOMContentLoaded', function() {
     // Determinar si estamos en schedule.html o next-appointment.html
@@ -18,15 +32,81 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Manejar el formulario de agendar cita (solo en schedule.html)
     const appointmentForm = document.getElementById('appointmentForm');
+    const serviceSelect = document.getElementById('service');
+    const discountCodeInput = document.getElementById('discountCode');
+    const priceInfo = document.getElementById('priceInfo');
+    const basePriceSpan = document.getElementById('basePrice');
+    const discountInfo = document.getElementById('discountInfo');
+    const discountAmountSpan = document.getElementById('discountAmount');
+    const discountPercentageSpan = document.getElementById('discountPercentage');
+    const finalPriceSpan = document.getElementById('finalPrice');
+    const discountError = document.getElementById('discountError');
+
     if (appointmentForm) {
+        // Actualizar precio cuando se selecciona un servicio
+        serviceSelect.addEventListener('change', updatePrice);
+        // Actualizar precio cuando se ingresa un código de descuento
+        discountCodeInput.addEventListener('input', updatePrice);
+
+        function updatePrice() {
+            const service = serviceSelect.value;
+            const discountCode = discountCodeInput.value.trim();
+            let basePrice = servicePrices[service] || 0;
+            let discountPercentage = 0;
+            let discountAmount = 0;
+            let finalPrice = basePrice;
+
+            // Validar código de descuento
+            if (discountCode) {
+                const codeInfo = validDiscountCodes[discountCode];
+                if (codeInfo) {
+                    const expirationDate = new Date(codeInfo.expires);
+                    const today = new Date();
+                    if (expirationDate >= today) {
+                        discountPercentage = codeInfo.discount;
+                        discountAmount = (basePrice * discountPercentage) / 100;
+                        finalPrice = basePrice - discountAmount;
+                        discountError.style.display = 'none';
+                    } else {
+                        discountError.textContent = 'Código de descuento caducado.';
+                        discountError.style.display = 'block';
+                        basePrice = 0; // Ocultar precios si el código es inválido
+                    }
+                } else {
+                    discountError.textContent = 'Código de descuento inválido.';
+                    discountError.style.display = 'block';
+                    basePrice = 0; // Ocultar precios si el código es inválido
+                }
+            } else {
+                discountError.style.display = 'none';
+            }
+
+            // Actualizar visualización de precios
+            if (basePrice > 0) {
+                priceInfo.style.display = 'block';
+                basePriceSpan.textContent = basePrice.toFixed(2);
+                if (discountPercentage > 0) {
+                    discountInfo.style.display = 'block';
+                    discountAmountSpan.textContent = discountAmount.toFixed(2);
+                    discountPercentageSpan.textContent = discountPercentage;
+                } else {
+                    discountInfo.style.display = 'none';
+                }
+                finalPriceSpan.textContent = finalPrice.toFixed(2);
+            } else {
+                priceInfo.style.display = 'none';
+            }
+        }
+
         appointmentForm.addEventListener('submit', function(event) {
             event.preventDefault();
 
             const name = document.getElementById('name').value.trim();
-            const service = document.getElementById('service').value;
+            const service = serviceSelect.value;
             const date = document.getElementById('date').value;
             const time = document.getElementById('time').value;
             const description = document.getElementById('description').value.trim();
+            const discountCode = discountCodeInput.value.trim();
 
             // Validation
             if (!name || !service || !date || !time) {
@@ -57,13 +137,46 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
+            // Validate discount code
+            let discountPercentage = 0;
+            let basePrice = servicePrices[service] || 0;
+            let discountAmount = 0;
+            let finalPrice = basePrice;
+
+            if (discountCode) {
+                const codeInfo = validDiscountCodes[discountCode];
+                if (!codeInfo) {
+                    discountError.textContent = 'Código de descuento inválido.';
+                    discountError.style.display = 'block';
+                    return;
+                }
+                const expirationDate = new Date(codeInfo.expires);
+                const today = new Date();
+                if (expirationDate < today) {
+                    discountError.textContent = 'Código de descuento caducado.';
+                    discountError.style.display = 'block';
+                    return;
+                }
+                discountPercentage = codeInfo.discount;
+                discountAmount = (basePrice * discountPercentage) / 100;
+                finalPrice = basePrice - discountAmount;
+                discountError.style.display = 'none';
+            } else {
+                discountError.style.display = 'none';
+            }
+
             const appointment = {
                 id: Date.now(), // Usar timestamp como ID único
                 name: name,
                 service: service,
                 date: date,
                 time: time,
-                description: description || 'Ninguna'
+                description: description || 'Ninguna',
+                discountCode: discountCode || null,
+                discount: discountPercentage || 0,
+                basePrice: basePrice,
+                discountAmount: discountAmount,
+                finalPrice: finalPrice
             };
 
             // Guardar la cita en localStorage
@@ -71,6 +184,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Limpiar el formulario
             appointmentForm.reset();
+            discountError.style.display = 'none';
+            priceInfo.style.display = 'none'; // Ocultar información de precios
 
             // Recargar la lista de citas
             loadAppointments('all');
@@ -93,7 +208,7 @@ function loadAppointments(filter = 'all') {
         let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
 
         // Filtrar citas según el parámetro
-        const now = new Date(); // Fecha actual dinámica (09:18 PM CST, June 09, 2025)
+        const now = new Date(); // Fecha actual dinámica
         if (filter === 'future') {
             appointments = appointments.filter(appointment => {
                 const appointmentDateTime = new Date(`${appointment.date}T${appointment.time}`);
@@ -110,6 +225,9 @@ function loadAppointments(filter = 'all') {
             li.innerHTML = `
                 ${appointment.name} - ${appointment.service} - ${appointment.date} a las ${appointment.time} 
                 ${appointment.description ? `<br>Descripción: ${appointment.description}` : ''}
+                <br>Precio base: $${appointment.basePrice.toFixed(2)}
+                ${appointment.discountCode ? `<br>Código de descuento: ${appointment.discountCode} ($${appointment.discountAmount.toFixed(2)} - ${appointment.discount}% aplicado)` : ''}
+                <br>Precio final: $${appointment.finalPrice.toFixed(2)}
                 <button onclick="deleteAppointment(${appointment.id})">Eliminar</button>
             `;
             appointmentList.appendChild(li);
