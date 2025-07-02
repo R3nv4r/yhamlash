@@ -310,3 +310,27 @@ document.querySelector('.universal-menu').addEventListener('click', function(eve
         toggleSubmenu(event, 'auth-submenu');
     }
 });
+// Mostrar el modal al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    const promoModal = document.getElementById('promoModal');
+    const closeBtn = document.querySelector('.close-btn');
+
+    // Mostrar el modal
+    if (promoModal) {
+        promoModal.style.display = 'flex';
+    }
+
+    // Cerrar el modal al hacer clic en el botón (X)
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            promoModal.style.display = 'none';
+        });
+    }
+
+    // Opcional: Cerrar el modal al hacer clic fuera de la imagen
+    promoModal.addEventListener('click', function(event) {
+        if (event.target === promoModal) {
+            promoModal.style.display = 'none';
+        }
+    });
+});

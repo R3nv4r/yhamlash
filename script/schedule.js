@@ -1,7 +1,7 @@
 // Lista de códigos de descuento válidos
 const validDiscountCodes = {
     'DESCUENTO10': { discount: 10, expires: '2025-12-31' },
-    'PROMO2025': { discount: 15, expires: '2025-07-31' }
+    'PROMOBIENVENIDA': { discount: 15, expires: '2025-07-31' }
 };
 
 // Precios de los servicios
